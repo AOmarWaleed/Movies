@@ -1,0 +1,8 @@
+.active {
+    color: var(--border-color) !important;
+}
+
+.nav-item span,
+.navbar-toggler i {
+    color: white;
+}

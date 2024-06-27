@@ -1,0 +1,216 @@
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  type="ball-scale-multiple"
+  color="#24b9f0"
+  [fullScreen]="true"
+  ><p style="color: white">Loading...</p></ngx-spinner
+>
+
+<div class="container w-75 mx-auto pt-4">
+  <h2 class="text-center py-3">Register</h2>
+  <form
+    (ngSubmit)="register(registerForm.value)"
+    action=""
+    [formGroup]="registerForm"
+  >
+    <div class="alert alert-danger py-1" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </div>
+
+    <label class="mt-2" for="name">name : </label>
+    <input
+      formControlName="name"
+      class="form-control my-2"
+      type="text"
+      name="name"
+      id="name"
+    />
+    <div
+      *ngIf="
+        registerForm.get('name')?.errors && registerForm.get('name')?.touched
+      "
+      class=""
+    >
+      <p
+        class="alert fs-6 text-danger py-2 ps-0"
+        *ngIf="registerForm.get('name')?.getError('required')"
+      >
+        *required
+      </p>
+      <p
+        class="alert fs-6 text-danger py-2 ps-0"
+        *ngIf="registerForm.get('name')?.getError('minlength')"
+      >
+        *minLength is 3 char
+      </p>
+      <p
+        class="alert fs-6 text-danger py-2 ps-0"
+        *ngIf="registerForm.get('name')?.getError('maxlength')"
+      >
+        *maxLength is 10 char
+      </p>
+    </div>
+
+    <!-- <label class="mt-2" for="last_name">last name : </label>
+    <input
+      formControlName="last_name"
+      class="form-control my-2"
+      type="text"
+      name="last_name"
+      id="last_name"
+    />
+    <div
+      *ngIf="
+        registerForm.get('last_name')?.errors &&
+        registerForm.get('last_name')?.touched
+      "
+      class=""
+    >
+      <p
+        class="alert fs-6 text-danger py-2 ps-0"
+        *ngIf="registerForm.get('last_name')?.getError('required')"
+      >
+        *required
+      </p>
+      <p
+        class="alert fs-6 text-danger py-2 ps-0"
+        *ngIf="registerForm.get('last_name')?.getError('minlength')"
+      >
+        *minLength is 3 char
+      </p>
+      <p
+        class="alert fs-6 text-danger py-2 ps-0"
+        *ngIf="registerForm.get('last_name')?.getError('maxlength')"
+      >
+        *maxLength is 10 char
+      </p>
+    </div> -->
+
+    <label class="mt-2" for="email">email : </label>
+    <input
+      formControlName="email"
+      class="form-control my-2"
+      type="text"
+      name="email"
+      id="email"
+    />
+    <div
+      *ngIf="
+        registerForm.get('email')?.errors && registerForm.get('email')?.touched
+      "
+      class=""
+    >
+      <p
+        class="alert fs-6 text-danger py-2 ps-0"
+        *ngIf="registerForm.get('email')?.getError('required')"
+      >
+        *required
+      </p>
+      <p
+        class="alert fs-6 text-danger py-2 ps-0"
+        *ngIf="registerForm.get('email')?.getError('email')"
+      >
+        *this email is not valid
+      </p>
+    </div>
+
+    <label class="mt-2" for="age">age : </label>
+    <input
+      formControlName="age"
+      class="form-control my-2"
+      type="number"
+      name="age"
+      id="age"
+    />
+    <div
+      *ngIf="
+        registerForm.get('age')?.errors && registerForm.get('age')?.touched
+      "
+      class=""
+    >
+      <p
+        class="alert fs-6 text-danger py-2 ps-0"
+        *ngIf="registerForm.get('age')?.getError('required')"
+      >
+        *required
+      </p>
+      <p
+        class="alert fs-6 text-danger py-2 ps-0"
+        *ngIf="registerForm.get('age')?.getError('min')"
+      >
+        *at least 16 years old
+      </p>
+      <p
+        class="alert fs-6 text-danger py-2 ps-0"
+        *ngIf="registerForm.get('age')?.getError('max')"
+      >
+        *max is 80 years old
+      </p>
+    </div>
+
+    <label class="mt-2" for="password">password : </label>
+    <input
+      formControlName="password"
+      class="form-control my-2"
+      type="password"
+      name="password"
+      id="password"
+    />
+    <div
+      *ngIf="
+        registerForm.get('password')?.errors &&
+        registerForm.get('password')?.touched
+      "
+      class=""
+    >
+      <p
+        class="alert fs-6 text-danger py-2 ps-0"
+        *ngIf="registerForm.get('password')?.getError('required')"
+      >
+        *required
+      </p>
+
+      <p
+        class="alert fs-6 text-danger py-2 ps-0"
+        *ngIf="registerForm.get('password')?.getError('minlength')"
+      >
+        *must be atLeast 6 Chars
+      </p>
+    </div>
+
+    <label class="mt-2" for="rePassword">rePassword : </label>
+    <input
+      formControlName="rePassword"
+      class="form-control my-2"
+      type="password"
+      name="rePassword"
+      id="rePassword"
+    />
+    <div
+      *ngIf="
+        registerForm.get('rePassword')?.errors &&
+        registerForm.get('rePassword')?.touched
+      "
+      class=""
+    >
+      <p
+        class="alert fs-6 text-danger py-2 ps-0"
+        *ngIf="registerForm.get('rePassword')?.getError('required')"
+      >
+        *required
+      </p>
+      <p
+        class="alert fs-6 text-danger py-2 ps-0"
+        *ngIf="registerForm.get('rePassword')?.getError('minlength')"
+      >
+        *must be atLeast 6 Chars
+      </p>
+    </div>
+
+    <button class="btn btn-primary my-2" [disabled]="registerForm.invalid">
+      <span *ngIf="!isLoding">Register</span>
+      <span *ngIf="isLoding">waiting ....</span>
+    </button>
+  </form>
+</div>

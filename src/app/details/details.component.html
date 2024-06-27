@@ -1,0 +1,110 @@
+<div class="container py-4">
+
+    <div  *ngIf="!movieDetalis && !tvDetalis && !personDetalis" class="">
+
+        <div class="bg-black p-2 align-items-center row" aria-hidden="true">
+            <div class="col-md-4">
+                <img src="../../assets/images/avatar.png" class="card-img-top">
+            </div>
+            <div class="col-md-8 mt-3">
+                <div class="card-body">
+                    <h5 class="card-title placeholder-glow">
+                      <span class="placeholder col-6"></span>
+                    </h5>
+                    <p class="card-text placeholder-glow">
+                      <span class="placeholder col-7"></span>
+                      <span class="placeholder col-4"></span>
+                      <span class="placeholder col-4"></span>
+                      <span class="placeholder col-6"></span>
+                      <span class="placeholder col-8"></span>
+                    </p>
+                    <a href="#" tabindex="-1" class="btn btn-primary disabled placeholder col-6"></a>
+                </div>
+            </div>
+          </div>
+    </div>
+
+
+     <div *ngIf="movieDetalis" class="row align-items-center"> 
+        <div class="col-md-4">
+            <img [src]="imgPrefix + movieDetalis.poster_path" class="rounded-3 w-100" alt="">
+        </div>
+        <div class="col">
+            <h3 class="mb-2 fs-3">{{movieDetalis.title}}</h3>
+            <p class="mb-3 fs-4">{{movieDetalis.tagline}}</p>
+            
+            <li class=" list-unstyled mb-4">
+                <span *ngFor="let genre of movieDetalis.genres" class="btn btn-primary me-3">{{genre.name}}</span>
+            </li>
+
+            <ul class="list-unstyled">
+                <li class="mb-2">release date : {{movieDetalis.release_date}}</li>
+                <li class="mb-2">vote average  : {{movieDetalis.vote_average}}</li>
+                <li class="mb-2">vote count  : {{movieDetalis.vote_count}}</li>
+            </ul>
+            <p class="mb-5">{{movieDetalis.overview }}</p>
+
+            <a target="_blank" class=" text-decoration-underline" [href]="movieDetalis.homepage">Go to movie home for more details</a>
+            
+        </div>
+    </div>
+
+     <div *ngIf="tvDetalis" class="row align-items-center"> 
+        <div class="col-md-4">
+            <img [src]="imgPrefix + tvDetalis.poster_path" class="rounded-3 w-100" alt="">
+        </div>
+        <div class="col">
+            <h3 class="mb-2 fs-3">{{tvDetalis.name}}</h3>
+            <p class="mb-3 fs-4">{{tvDetalis.tagline}}</p>
+           
+            <li class=" list-unstyled mb-4">
+                <span *ngFor="let genre of tvDetalis.genres" class="btn btn-primary me-3">{{genre.name}}</span>
+            </li>
+
+            <ul class="list-unstyled">
+                <li class="mb-2">release date : {{tvDetalis.release_date}}</li>
+                <li class="mb-2">vote average  : {{tvDetalis.vote_average}}</li>
+                <li class="mb-2">vote count  : {{tvDetalis.vote_count}}</li>
+            </ul>
+
+            <p class="mb-5">{{tvDetalis.overview }}</p>
+
+            <a target="_blank" class=" text-decoration-underline" [href]="tvDetalis.homepage">Go to tv show home for more details</a>
+            
+        </div>
+    </div>
+
+     <div *ngIf="personDetalis" class="row align-items-center"> 
+        <div class="col-md-4">
+            <img [src]="imgPrefix + personDetalis.profile_path" class="rounded-3 w-100" alt="">
+        </div>
+        <div class="col-md-8 mt-3">
+            <h3 class="mb-3">{{personDetalis.name}}</h3>
+            <p class="mb-5">{{personDetalis.biography | limitWordsNum : 200 }}</p>
+
+            <ul class="list-unstyled">
+                <li class="mb-2">birthday : {{personDetalis.birthday}}</li>
+                <li class="mb-2">place of birth : {{personDetalis.place_of_birth}}</li>
+            </ul>
+
+        </div>
+        
+
+        <div   class="col mt-5">
+            <owl-carousel-o [options]="customOptions">
+          
+              <ng-container *ngFor="let movie of actorMovies">
+                <ng-template carouselSlide >
+                    <a (click)="getDetails(movie.id , 'movie')">
+                        <img  [src]="movie.poster_path ? imgPrefix + movie.poster_path : '../../assets/images/avatar.png'" class="rounded-3 w-100" alt="">
+                        <h4 class="fs-6 text-center pt-2"> {{movie.title}} </h4>
+                     </a>
+                </ng-template>
+              </ng-container>
+          
+            </owl-carousel-o>
+
+        </div>
+
+    </div>
+</div>

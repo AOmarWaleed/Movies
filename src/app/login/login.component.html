@@ -1,0 +1,29 @@
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium"  type = "ball-scale-multiple"  color = "#24b9f0" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
+
+
+
+<div class="container pt-5">
+    <h2 class="text-center  py-3">Login</h2>
+    <form class="w-75 mx-auto" (ngSubmit)="login(loginForm)" action="" [formGroup]="loginForm">
+
+        <label class="pb-1" for="email">Enter ur Email :</label>
+        <input class="py-2 form-control my-2" type="email" name="email" id="email" formControlName="email">
+        <div class="" *ngIf=" loginForm.get('email')?.errors && loginForm.get('email')?.touched " >
+            <p  *ngIf=" loginForm.get('email')?.getError('required')" class="alert fs-6 text-danger  py-2 ps-0">*required</p>
+            <p *ngIf=" loginForm.get('email')?.getError('email')" class="alert fs-6 text-danger  py-2 ps-0">*this email not valid</p>
+        </div>
+
+
+        <label class="pb-1" for="password">Enter ur Password :</label>
+        <input class="py-2 form-control my-2" type="password" name="password" id="password" formControlName="password">
+        <div class="" *ngIf=" loginForm.get('password')?.errors && loginForm.get('password')?.touched " >
+            <p  *ngIf=" loginForm.get('password')?.getError('required')" class="alert fs-6 text-danger  py-2 ps-0">*required</p>
+        </div>
+
+        <button [disabled]="loginForm.invalid" type="submit" class="my-2 btn btn-info">
+            <span *ngIf="!isLoading" >login</span>
+            <span *ngIf="isLoading" ><i class="fas fa-spinner fa-spin"></i></span>
+        </button>
+
+    </form>
+</div>

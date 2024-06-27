@@ -1,0 +1,48 @@
+<div class="container py-5">
+    <input type="text" class="form-control w-75 mb-3 mx-auto" placeholder="serch" [(ngModel)]="searchWord">
+
+    <div *ngIf="tvShows.length <= 0" class="row g-3">
+   
+
+        <div *ngFor="let num of placeHolderArr" class="col-md-4 col-lg-3 col-xl-2">
+            <div class="bg-dark card" aria-hidden="true">
+                <img [src]="placeHolderImage" class="card-img-top" alt="">
+                <div class="card-body">
+                    <h5 class="card-title placeholder-glow">
+                    <span class="placeholder col-6"></span>
+                    </h5>
+                    <p class="card-text placeholder-glow">
+                    <span class="placeholder col-7"></span>
+                    <span class="placeholder col-4"></span>
+                    <span class="placeholder col-4"></span>
+                    <span class="placeholder col-6"></span>
+                    <span class="placeholder col-8"></span>
+                    </p>
+                    <a href="#" tabindex="-1" class="btn btn-primary disabled placeholder col-6"></a>
+                </div>
+            </div>
+        </div>
+        
+
+
+    </div>
+
+    <div *ngIf="tvShows" class="row justify-content-center"> 
+        <div class="col-md-4 col-lg-3 col-xl-2 position-relative" *ngFor="let tvShow of tvShows | realTimeSearch: searchWord" >
+            <span class="p-2 bg-info position-absolute top-0 end-0">{{tvShow.vote_average|number:'1.0-1'}}</span>
+            <a [routerLink]="['/details' , tvShow.id , 'tv']">
+                <img [src]="imgPreFix + tvShow.poster_path" class="w-100 mb-2" alt="">
+                <h3 class="h5">{{tvShow.name}}</h3>
+                <p class="text-muted fs-6">{{tvShow.overview | limitWordsNum: 10}} </p>
+            </a>
+
+        </div>
+    </div>
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination text-center d-flex justify-content-center" >
+          <li *ngFor="let page of totalPagesArr | limitOfPagination:currentPage" class="page-item cursor_pointer my-4"><a [class.active]='currentPage == page' class="page-link bg-black" (click)="getPageNom(page)">{{page}}</a></li>
+        </ul>
+    </nav>
+
+</div>

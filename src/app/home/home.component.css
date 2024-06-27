@@ -1,0 +1,56 @@
+
+.right_text::after {
+    content: "";
+    height: 2px;
+    width: 70%;
+    background-color: var(--border-color);
+    position: absolute;
+    bottom: -10px;
+}
+.right_text::before {
+    content: "";
+    height: 2px;
+    width: 40%;
+    background-color: var(--border-color);
+    position: absolute;
+    top: -10px;
+}
+header {
+    height: calc(100vh - 56px);
+    background-image: url('../../assets/images/headerNaroute.webp');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+@media screen and (max-height:450px ) {
+    header {
+        height: auto;
+    }
+}
+
+header img {
+    transition: .6s all;
+}
+
+header img:hover {
+    transform: scale(1.1);
+    filter: grayscale(10) blur(2px);
+}
+
+header img:hover ~ .movie_info  {
+    opacity: 1;
+}
+
+.movie_info {
+    pointer-events: none;
+    opacity: 0;
+}
+
+.movie_info span {
+    color: white;
+}
+
+.slideContainer {
+    overflow: hidden;
+}
