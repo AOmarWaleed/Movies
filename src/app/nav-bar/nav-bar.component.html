@@ -1,0 +1,105 @@
+<nav class="p-2 navbar navbar-expand-lg shadow">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="home">Movies App</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fa-solid fa-align-right"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a
+            class="nav-link text-capitalize"
+            *ngIf="isLogin"
+            routerLinkActive="active"
+            routerLink="home"
+            >home</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link text-capitalize"
+            *ngIf="isLogin"
+            routerLinkActive="active"
+            routerLink="movies"
+            >movies</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link text-capitalize"
+            *ngIf="isLogin"
+            routerLinkActive="active"
+            routerLink="tv"
+            >tv</a
+          >
+        </li>
+        <!-- <li class="nav-item">
+            <a class="nav-link text-capitalize" *ngIf="isLogin" routerLinkActive="active" routerLink="actors">actors</a>
+          </li> -->
+      </ul>
+
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="d-flex align-items-center nav-item me-4">
+          <a href="">
+            <i class="fab mx-2 fa-facebook"></i>
+          </a>
+          <a href="">
+            <i class="fab mx-2 fa-twitter"></i>
+          </a>
+          <a href="">
+            <i class="fab mx-2 fa-youtube"></i>
+          </a>
+          <a href=""> <i class="fab mx-2 fa-soundcloud"></i></a>
+        </li>
+
+        <li class="nav-item">
+          <span class="nav-link" *ngIf="isLogin"
+            >welcome {{ userData.first_name }}</span
+          >
+        </li>
+
+        <!-- <li class="nav-item">
+              <a class="nav-link" *ngIf="isLogin" routerLinkActive="active" routerLink="settings">
+                <i class="fa-solid fa-user"></i>
+                profile</a>
+            </li> -->
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            *ngIf="!isLogin"
+            routerLinkActive="active"
+            routerLink="login"
+            >login</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            *ngIf="!isLogin"
+            routerLinkActive="active"
+            routerLink="register"
+            >register</a
+          >
+        </li>
+        <li class="nav-item">
+          <span
+            (click)="logOut()"
+            *ngIf="isLogin"
+            class="cursor_pointer nav-link"
+          >
+            <i class="fa-solid fa-arrow-right-to-bracket"></i>
+            logOut
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

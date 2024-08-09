@@ -1,0 +1,143 @@
+<header class="d-flex align-items-end pb-2">
+  <div class="container">
+    <owl-carousel-o [options]="customOptions">
+      <ng-container *ngFor="let movie of trendingMovies">
+        <ng-template carouselSlide [id]="movie.id">
+          <div class="slideContainer position-relative">
+            <a [routerLink]="['/details', movie.id, 'movie']">
+              <img [src]="preFixImg + movie.poster_path" class="w-100" alt="" />
+
+              <div
+                class="movie_info h-100 w-100 bg-dark bg-opacity-50 text-center position-absolute start-0 top-0 d-flex align-items-center justify-content-center"
+              >
+                <span class="p-2 bg-info position-absolute top-0 end-0">{{
+                  movie.vote_average | number : "1.0-1"
+                }}</span>
+                <h4 class="h6 fw-bolder">{{ movie.title }}</h4>
+              </div>
+            </a>
+          </div>
+        </ng-template>
+      </ng-container>
+    </owl-carousel-o>
+  </div>
+</header>
+
+<div class="container py-5">
+  <div class="row g-3" *ngIf="trendingMovies.length <= 0">
+    <div
+      *ngFor="let num of placeHolderArr"
+      class="col-sm-6 col-md-4 col-lg-3 col-xl-2"
+    >
+      <div class="bg-dark card" aria-hidden="true">
+        <img [src]="placeHolderImg" class="card-img-top" alt="" />
+        <div class="card-body">
+          <h5 class="card-title placeholder-glow">
+            <span class="placeholder col-6"></span>
+          </h5>
+          <p class="card-text placeholder-glow">
+            <span class="placeholder col-7"></span>
+            <span class="placeholder col-4"></span>
+            <span class="placeholder col-4"></span>
+            <span class="placeholder col-6"></span>
+            <span class="placeholder col-8"></span>
+          </p>
+          <a
+            href="#"
+            tabindex="-1"
+            class="btn btn-primary disabled placeholder col-6"
+          ></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="trendingMovies.length > 0" class="row justify-content-center">
+    <div class="col-sm-6 col-md-4 d-flex align-items-center my-5 my-md-0">
+      <div class="right_text position-relative">
+        <h2>
+          Trending <br />
+          Movies <br />
+          To Watch Right Now
+        </h2>
+        <p class="text-muted">most watched movies by day</p>
+      </div>
+    </div>
+
+    <div
+      *ngFor="let movie of trendingMovies | moviesLimitNum : 10"
+      class="col-md-4 col-sm-6 col-lg-3 col-xl-2 position-relative"
+    >
+      <span class="p-2 bg-info position-absolute top-0 end-0">{{
+        movie.vote_average | number : "1.0-1"
+      }}</span>
+      <a [routerLink]="['/details', movie.id, 'movie']">
+        <img [src]="preFixImg + movie.poster_path" class="w-100 mb-2" alt="" />
+        <h3 class="h5">{{ movie.title }}</h3>
+        <p class="text-muted fs-6">{{ movie.overview | limitWordsNum : 10 }}</p>
+      </a>
+    </div>
+  </div>
+
+  <div *ngIf="trendingTv.length > 0" class="row justify-content-center">
+    <div class="col-sm-6 col-md-4 d-flex align-items-center my-5 my-md-0">
+      <div class="right_text position-relative">
+        <h2>
+          Trending <br />
+          TV <br />
+          To Watch Right Now
+        </h2>
+        <p class="text-muted">most watched tv by day</p>
+      </div>
+    </div>
+
+    <div
+      *ngFor="let tv of trendingTv | moviesLimitNum : 10"
+      class="col-md-4 col-sm-6 col-lg-3 col-xl-2 position-relative"
+    >
+      <span class="p-2 bg-info position-absolute top-0 end-0">{{
+        tv.vote_average | number : "1.0-1"
+      }}</span>
+      <a [routerLink]="['/details', tv.id, 'tv']">
+        <img
+          [src]="preFixImg + tv.poster_path"
+          class="bg-light w-100 mb-2"
+          alt=""
+        />
+        <h3 class="h5">{{ tv.name }}</h3>
+        <p class="text-muted fs-6">{{ tv.overview | limitWordsNum : 10 }}</p>
+      </a>
+    </div>
+  </div>
+
+  <div *ngIf="trendingPerson.length > 0" class="row justify-content-center">
+    <div class="col-md-4 col-sm-6 d-flex align-items-center my-5 my-md-0">
+      <div class="right_text position-relative">
+        <h2>
+          Trending <br />
+          Person <br />
+          To Watch Right Now
+        </h2>
+        <p class="text-muted">most watched Person by day</p>
+      </div>
+    </div>
+
+    <div
+      *ngFor="let person of trendingPerson | moviesLimitNum : 10"
+      class="col-md-4 col-sm-6 col-lg-3 col-xl-2"
+    >
+      <a [routerLink]="['/details', person.id, 'person']">
+        <img
+          [src]="
+            person.profile_path
+              ? preFixImg + person.profile_path
+              : placeHolderImg
+          "
+          class="w-100 mb-2"
+          alt=""
+        />
+        <h3 class="h5">{{ person.name }}</h3>
+      </a>
+    </div>
+  </div>
+</div>

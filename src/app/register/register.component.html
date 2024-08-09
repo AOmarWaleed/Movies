@@ -1,0 +1,213 @@
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  type="ball-scale-multiple"
+  color="#24b9f0"
+  [fullScreen]="true"
+  ><span style="color: white">Loading...</span></ngx-spinner
+>
+
+<div class="container w-75 mx-auto pt-4">
+  <h2 class="text-info py-3">Register</h2>
+  <form
+    (ngSubmit)="register(registerForm.value)"
+    action=""
+    [formGroup]="registerForm"
+  >
+    <div class="alert alert-danger py-1" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </div>
+
+    <label class="mt-2" for="name">name : </label>
+    <input
+      formControlName="name"
+      class="form-control my-2"
+      type="text"
+      name="name"
+      id="name"
+    />
+    <div
+      *ngIf="
+        registerForm.get('name')?.errors && registerForm.get('name')?.touched
+      "
+      class="alert alert-danger py-2 my-2"
+    >
+      <span
+        class="alert fs-6 text-danger py-2 ps-0"
+        *ngIf="registerForm.get('name')?.getError('required')"
+      >
+        *required
+      </span>
+      <span
+        class="alert fs-6 text-danger py-2 ps-0"
+        *ngIf="registerForm.get('name')?.getError('minlength')"
+      >
+        *minLength is 3 char
+      </span>
+      <span
+        class="alert fs-6 text-danger py-2 ps-0"
+        *ngIf="registerForm.get('name')?.getError('maxlength')"
+      >
+        *maxLength is 10 char
+      </span>
+    </div>
+
+    <!-- <label class="mt-2" for="last_name">last name : </label>
+    <input
+      formControlName="last_name"
+      class="form-control my-2"
+      type="text"
+      name="last_name"
+      id="last_name"
+    />
+    <div
+      *ngIf="
+        registerForm.get('last_name')?.errors &&
+        registerForm.get('last_name')?.touched
+      "
+      class="alert alert-danger py-2 my-2"
+    >
+      <span
+        class="alert fs-6 text-danger py-2 ps-0"
+        *ngIf="registerForm.get('last_name')?.getError('required')"
+      >
+        *required
+      </span>
+      <span
+        class="alert fs-6 text-danger py-2 ps-0"
+        *ngIf="registerForm.get('last_name')?.getError('minlength')"
+      >
+        *minLength is 3 char
+      </span>
+      <span
+        class="alert fs-6 text-danger py-2 ps-0"
+        *ngIf="registerForm.get('last_name')?.getError('maxlength')"
+      >
+        *maxLength is 10 char
+      </span>
+    </div> -->
+
+    <label class="mt-2" for="email">email : </label>
+    <input
+      formControlName="email"
+      class="form-control my-2"
+      type="text"
+      name="email"
+      id="email"
+    />
+    <div
+      *ngIf="
+        registerForm.get('email')?.errors && registerForm.get('email')?.touched
+      "
+      class="alert alert-danger py-2 my-2"
+    >
+      <span
+        class="alert fs-6 text-danger py-2 ps-0"
+        *ngIf="registerForm.get('email')?.getError('required')"
+      >
+        *required
+      </span>
+      <span
+        class="alert fs-6 text-danger py-2 ps-0"
+        *ngIf="registerForm.get('email')?.getError('email')"
+      >
+        *this email is not valid
+      </span>
+    </div>
+
+    <label class="mt-2" for="age">Phone : </label>
+    <input
+      formControlName="phone"
+      class="form-control my-2"
+      type="tel"
+      name="age"
+      id="age"
+    />
+    <div
+      *ngIf="
+        registerForm.get('phone')?.errors && registerForm.get('phone')?.touched
+      "
+      class="alert alert-danger py-2 my-2"
+    >
+      <span
+        class="alert fs-6 text-danger py-2 ps-0"
+        *ngIf="registerForm.get('phone')?.getError('required')"
+      >
+        *required
+      </span>
+      <span
+        class="alert fs-6 text-danger py-2 ps-0"
+        *ngIf="registerForm.get('phone')?.getError('pattern')"
+      >
+        *must be valid egyptian num
+      </span>
+     
+    </div>
+
+    <label class="mt-2" for="password">password : </label>
+    <input
+      formControlName="password"
+      class="form-control my-2"
+      type="password"
+      name="password"
+      id="password"
+    />
+    <div
+      *ngIf="
+        registerForm.get('password')?.errors &&
+        registerForm.get('password')?.touched
+      "
+      class="alert alert-danger py-2 my-2"
+    >
+      <span
+        class="alert fs-6 text-danger py-2 ps-0"
+        *ngIf="registerForm.get('password')?.getError('required')"
+      >
+        *required
+      </span>
+
+      <span
+        class="alert fs-6 text-danger py-2 ps-0"
+        *ngIf="registerForm.get('password')?.getError('pattern')"
+      >
+        *must be start with upperCase then atLeast 5 Chars
+      </span>
+    </div>
+
+    <label class="mt-2" for="rePassword">rePassword : </label>
+    <input
+      formControlName="rePassword"
+      class="form-control my-2"
+      type="password"
+      name="rePassword"
+      id="rePassword"
+    />
+    <div
+      *ngIf="
+        registerForm.get('rePassword')?.errors &&
+        registerForm.get('rePassword')?.touched
+      "
+      class="alert alert-danger py-2 my-2"
+    >
+      <span
+        class="alert fs-6 text-danger py-2 ps-0"
+        *ngIf="registerForm.get('rePassword')?.getError('required')"
+      >
+        *required
+      </span>
+      
+      <span
+        class="alert fs-6 text-danger py-2 ps-0"
+        *ngIf="registerForm?.getError('mismatch')"
+      >
+      <!-- {{registerForm?.getError('mismatch') | json}} -->
+      *must be match the PassWord 
+    </span>
+    </div>
+
+    <button class="btn btn-primary my-2" [disabled]="registerForm.invalid">
+      <span *ngIf="!isLoding">Register</span>
+      <span *ngIf="isLoding">waiting ....</span>
+    </button>
+  </form>
+</div>
